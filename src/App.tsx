@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import Hello from './components/Hello';
+import Navigation from './components/Navigation';
 
 import logo from './logo.svg';
 
@@ -12,12 +14,18 @@ class App extends React.Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <Hello name="Cristiana" />
+
+        <Router>
+          <div className="App-intro">
+            <Navigation />
+            <Route path="/hello" render={this.renderHello} />
+          </div>
+        </Router>
       </div>
     );
+  }
+  private renderHello() {
+    return <Hello name="Cristiana" />;
   }
 }
 
