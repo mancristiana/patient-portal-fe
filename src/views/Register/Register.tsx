@@ -1,20 +1,24 @@
 import { Button, message, Steps } from 'antd';
 import * as React from 'react';
+import AccountForm from './AccountForm';
 import './Register.less';
 
 const Step = Steps.Step;
 const steps = [
   {
-    content: 'First-content',
-    title: 'First'
+    content: <AccountForm />,
+    icon: 'user',
+    title: 'Account'
   },
   {
     content: 'Second-content',
-    title: 'Second'
+    icon: 'solution',
+    title: 'Profile'
   },
   {
     content: 'Last-content',
-    title: 'Last'
+    icon: 'smile-o',
+    title: 'Done'
   }
 ];
 
@@ -35,10 +39,12 @@ class Register extends React.Component<{}, State> {
     return (
       <div className="Register">
         <Steps current={current}>
-          {steps.map(item => <Step key={item.title} title={item.title} />)}
+          {steps.map(item => <Step key={item.title} {...item} />)}
         </Steps>
-        <div className="steps-content">{steps[this.state.current].content}</div>
-        <div className="steps-action">
+        <div className="Register-content">
+          {steps[this.state.current].content}
+        </div>
+        <div className="Register-action">
           {this.state.current < steps.length - 1 && (
             <Button type="primary" onClick={this.next}>
               Next
