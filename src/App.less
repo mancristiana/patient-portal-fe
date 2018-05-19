@@ -1,27 +1,32 @@
+@top-navigation-height: 64px;
+
 .App {
-  text-align: center;
+  height: 100vh;
+  background: #f0f2f5 url('./assets/bg.svg') no-repeat fixed top !important;
 
   .App-header {
-    background-color: #222;
-    height: 150px;
-    padding: 20px;
-
-    .App-logo {
-      animation: App-logo-spin infinite 20s linear;
-      height: 80px;
-    }
-
-    h2 {
-      color: white;
-    }
+    position: fixed;
+    width: 100%;
+    background: transparent;
   }
 
-  .App-intro {
-    font-size: large;
+  .App-content {
+    margin-top: @top-navigation-height;
   }
-}
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  .App-view {
+    min-height: 280px;
+  }
+
+  .App-footer {
+    background: white;
+    position: fixed bottom;
+    text-align: center;
+    width: 100%;
+
+    .heart {
+      color: #f0837d;
+      margin: 0 5px;
+    }
+  }
 }
