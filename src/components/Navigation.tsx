@@ -8,7 +8,7 @@ class Navigation extends React.PureComponent {
         <NavLink exact={true} to="/">
           Home
         </NavLink>
-        <NavLink to="/hello">Hello</NavLink>
+        <NavLink to="/register">Register</NavLink>
       </nav>
     );
   }
