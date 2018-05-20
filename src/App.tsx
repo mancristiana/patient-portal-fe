@@ -12,15 +12,14 @@ class App extends React.Component {
     return (
       <Router>
         <Layout className="App">
+          <div className="App-background" />
           <Header className="App-header">
             <Navigation />
           </Header>
 
           <Content className="App-content">
-            <div className="App-view">
-              <Route exact={true} path="/" component={Home} />
-              <Route path="/register" component={Register} />
-            </div>
+            <Route exact={true} path="/" component={Home} />
+            <Route path="/register" component={Register} />
           </Content>
 
           <Footer className="App-footer">

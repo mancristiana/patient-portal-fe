@@ -11,7 +11,7 @@ class Navigation extends React.PureComponent {
       <Menu
         className="Navigation"
         mode="horizontal"
-        defaultSelectedKeys={['2']}
+        defaultSelectedKeys={['1']}
         style={{ backgroundColor: 'transparent' }}>
         <Item key="1">
           <NavLink exact={true} to="/">

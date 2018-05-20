@@ -2,20 +2,26 @@
 
 .App {
   height: 100vh;
-  background: #f0f2f5 url('./assets/bg.svg') no-repeat fixed top !important;
+
+  .App-background {
+    background: #f0f2f5 url('./assets/bg.svg') no-repeat fixed top;
+    background-size: cover;
+    position: absolute;
+    z-index: 1;
+    height: 250px;
+    width: 100%;
+  }
 
   .App-header {
     position: fixed;
     width: 100%;
     background: transparent;
+    z-index: 2;
   }
 
   .App-content {
     margin-top: @top-navigation-height;
-  }
-
-  .App-view {
-    min-height: 280px;
+    z-index: 2;
   }
 
   .App-footer {
@@ -23,6 +29,7 @@
     position: fixed bottom;
     text-align: center;
     width: 100%;
+    z-index: 2;
 
     .heart {
       color: #f0837d;
