@@ -7,11 +7,15 @@ import './Register.less';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
+export interface Props {
+  onSubmit: (formData) => void;
+}
+
 export interface State {
   confirmDirty: boolean;
 }
 
-class Register extends React.Component<FormComponentProps, State> {
+class Register extends React.Component<Props & FormComponentProps, State> {
   constructor(props) {
     super(props);
     this.state = {
