@@ -19,7 +19,7 @@ class App extends React.Component {
 
           <Content className="App-content">
             <Route exact={true} path="/" component={Home} />
-            <Route path="/register" render={this.renderRegister} />
+            <Route path="/register" component={Register} />
           </Content>
 
           <Footer className="App-footer">
@@ -33,14 +33,6 @@ class App extends React.Component {
       </Router>
     );
   }
-
-  private renderRegister = () => {
-    return <Register onSubmit={this.handleSubmit} />;
-  };
-
-  private handleSubmit = formData => {
-    // do something here
-  };
 }
 
 export default App;
