@@ -20,8 +20,11 @@ class Navigation extends React.PureComponent {
         </Item>
 
         <Item key="2">
-          {' '}
           <NavLink to="/register">Register</NavLink>
+        </Item>
+
+        <Item key="3">
+          <NavLink to="/login">Login</NavLink>
         </Item>
       </Menu>
     );
