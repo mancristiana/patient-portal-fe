@@ -1,9 +1,10 @@
 import { Button, Form, Icon, Input } from 'antd';
+import { FormComponentProps } from 'antd/lib/form/Form';
 import * as React from 'react';
 
 const FormItem = Form.Item;
 
-export interface Props {
+export interface LoginProps {
   onSubmit: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onChange: (event) => void;
   errors: {};
@@ -14,8 +15,11 @@ export interface Props {
   };
 }
 
-class LoginForm extends React.Component<Props, object> {
-  constructor(props) {
+class LoginForm extends React.Component<
+  LoginProps & FormComponentProps,
+  object
+> {
+  constructor(props: LoginProps & FormComponentProps) {
     super(props);
     this.state = {
       confirmDirty: false
@@ -23,17 +27,20 @@ class LoginForm extends React.Component<Props, object> {
   }
 
   public render() {
+    const { getFieldDecorator } = this.props.form;
     const renderIcon = (type: string) => (
       <Icon type={type} style={{ color: 'rgba(0,0,0,.25)' }} />
     );
 
     const fieldsData = [
       {
+        name: 'email',
         placeholder: 'Email',
         prefix: renderIcon('mail'),
         type: 'email'
       },
       {
+        name: 'password',
         placeholder: 'Password',
         prefix: renderIcon('lock'),
         type: 'password'
@@ -41,10 +48,15 @@ class LoginForm extends React.Component<Props, object> {
     ];
 
     return (
-      <Form className="AccountForm" layout="horizontal">
+      <Form
+        className="AccountForm"
+        layout="horizontal"
+        onSubmit={this.props.onSubmit}>
         {fieldsData.map((item, key) => (
           <FormItem key={key}>
-            <Input {...item} onChange={this.props.onChange} />
+            {getFieldDecorator(item.name)(
+              <Input {...item} onChange={this.props.onChange} />
+            )}
           </FormItem>
         ))}
         <FormItem>
@@ -57,4 +69,6 @@ class LoginForm extends React.Component<Props, object> {
   }
 }
 
-export default LoginForm;
+const WrappedLoginForm = Form.create<LoginProps>()(LoginForm);
+
+export default WrappedLoginForm;
