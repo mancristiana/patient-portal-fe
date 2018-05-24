@@ -1,29 +1,30 @@
-import { Button, Form, Icon, Input } from 'antd';
-import { FormComponentProps } from 'antd/lib/form/Form';
+import { Button, Form, Icon, Input, message } from 'antd';
+import {
+  FormComponentProps,
+  ValidateCallback,
+  ValidationRule
+} from 'antd/lib/form/Form';
 import * as React from 'react';
+import { IUser } from './IUser';
 
 const FormItem = Form.Item;
 
-export interface LoginProps {
-  onSubmit: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  onChange: (event) => void;
-  errors: {};
-  successMessage: string;
-  user: {
-    email: string;
-    password: string;
-  };
+interface ILoginErrors {
+  email: { errors: ValidationRule[] };
+  password: { errors: ValidationRule[] };
+}
+
+export interface ILoginProps {
+  onSubmit: (user: IUser) => void;
 }
 
 class LoginForm extends React.Component<
-  LoginProps & FormComponentProps,
+  ILoginProps & FormComponentProps,
   object
 > {
-  constructor(props: LoginProps & FormComponentProps) {
+  constructor(props: ILoginProps & FormComponentProps) {
     super(props);
-    this.state = {
-      confirmDirty: false
-    };
+    this.state = { errors: {} };
   }
 
   public render() {
@@ -34,16 +35,38 @@ class LoginForm extends React.Component<
 
     const fieldsData = [
       {
+        input: {
+          placeholder: 'E-mail',
+          prefix: renderIcon('mail'),
+          type: 'text'
+        },
+        label: 'E-mail',
         name: 'email',
-        placeholder: 'Email',
-        prefix: renderIcon('mail'),
-        type: 'email'
+        validation: [
+          {
+            message: 'Please enter your e-mail',
+            required: true
+          },
+          {
+            message: 'The input is not valid e-mail!',
+            type: 'email'
+          }
+        ]
       },
       {
+        input: {
+          placeholder: 'Password',
+          prefix: renderIcon('lock'),
+          type: 'password'
+        },
+        label: 'Password',
         name: 'password',
-        placeholder: 'Password',
-        prefix: renderIcon('lock'),
-        type: 'password'
+        validation: [
+          {
+            message: 'Please enter your password',
+            required: true
+          }
+        ]
       }
     ];
 
@@ -51,11 +74,11 @@ class LoginForm extends React.Component<
       <Form
         className="AccountForm"
         layout="horizontal"
-        onSubmit={this.props.onSubmit}>
+        onSubmit={this.handleSubmit}>
         {fieldsData.map((item, key) => (
           <FormItem key={key}>
-            {getFieldDecorator(item.name)(
-              <Input {...item} onChange={this.props.onChange} />
+            {getFieldDecorator(item.name, { rules: item.validation })(
+              <Input {...item.input} />
             )}
           </FormItem>
         ))}
@@ -67,8 +90,25 @@ class LoginForm extends React.Component<
       </Form>
     );
   }
+
+  private handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const { form } = this.props;
+    event.preventDefault();
+    form.validateFields(['email', 'password'], {}, this.submitOnValid);
+  };
+
+  private submitOnValid: ValidateCallback = (
+    errors: ILoginErrors,
+    values: IUser
+  ) => {
+    if (!errors) {
+      this.props.onSubmit(values);
+    } else {
+      message.error('Please validate fields to Login!');
+    }
+  };
 }
 
-const WrappedLoginForm = Form.create<LoginProps>()(LoginForm);
+const WrappedLoginForm = Form.create<ILoginProps>()(LoginForm);
 
 export default WrappedLoginForm;
