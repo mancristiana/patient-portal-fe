@@ -5,7 +5,7 @@ import {
   ValidationRule
 } from 'antd/lib/form/Form';
 import * as React from 'react';
-import { IUser } from './IUser';
+import { Auth } from './../../shared';
 
 const FormItem = Form.Item;
 
@@ -15,7 +15,7 @@ interface ILoginErrors {
 }
 
 export interface ILoginProps {
-  onSubmit: (user: IUser) => void;
+  onSubmit: (user: Auth) => void;
 }
 
 class LoginForm extends React.Component<
@@ -99,7 +99,7 @@ class LoginForm extends React.Component<
 
   private submitOnValid: ValidateCallback = (
     errors: ILoginErrors,
-    values: IUser
+    values: Auth
   ) => {
     if (!errors) {
       this.props.onSubmit(values);

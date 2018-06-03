@@ -1,10 +1,17 @@
-import { Card, message } from 'antd';
+// import { Card, message } from 'antd';
+import { Card } from 'antd';
 import * as React from 'react';
-import { IUser } from './IUser';
+// import { AuthService } from './../../services';
+// import { Auth, Response, Token } from './../../shared';
+import { Auth } from './../../shared';
 import './Login.less';
 import LoginForm from './LoginForm';
 
-class Login extends React.Component {
+interface ILoginProps {
+  onLogin: () => void;
+}
+
+class Login extends React.Component<ILoginProps, object> {
   public render() {
     return (
       <div className="Login">
@@ -15,17 +22,19 @@ class Login extends React.Component {
     );
   }
 
-  private processForm = (user: IUser) => {
-    // create a string for an HTTP body message
-    const email = encodeURIComponent(user.email);
-    const password = encodeURIComponent(user.password);
-    const formData = `email=${email}&password=${password}`;
-    console.log('FormData', formData);
+  private processForm = (user: Auth) => {
+    // const hide = message.loading('Verifying credentials', 0);
+    this.props.onLogin();
+    // AuthService.login(user).then((response: Response<Token>) => {
+    //   setTimeout(hide, 0);
+    //   if (response.success) {
+    //     message.success('Successful login');
 
-    // const success = message.success('Login was successfull', 0);
-    const hide = message.loading('Verifying credentials', 0);
-    // Dismiss manually and asynchronously
-    setTimeout(hide, 2500);
+    //     // Redirect
+    //   } else {
+    //     message.error('Incorrect credentials');
+    //   }
+    // });
   };
 }
 
