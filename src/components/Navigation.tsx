@@ -8,7 +8,7 @@ class Navigation extends React.Component {
   public render() {
     return (
       <AuthConsumer>
-        {({ isLoggedIn }) => (
+        {({ isLoggedIn, logout }) => (
           <Menu
             className="Navigation"
             mode="horizontal"
@@ -29,7 +29,11 @@ class Navigation extends React.Component {
                 <NavLink to="/login">Login</NavLink>
               </Menu.Item>
             )}
-            {isLoggedIn && <Menu.Item key="4">Logout</Menu.Item>}
+            {isLoggedIn && (
+              <Menu.Item key="4" onClick={logout}>
+                Logout
+              </Menu.Item>
+            )}
           </Menu>
         )}
       </AuthConsumer>

@@ -1,23 +1,33 @@
-import * as React from 'react';
+// import * as React from 'react';
+// import { Auth } from './../../shared';
+// import { defaultState, IAuthContext, Provider } from './AuthContext';
 
-import { defaultState, IAuthContext, Provider } from './AuthContext';
+// export interface IAuthProviderProps {
+//   children: React.ReactNode;
+// }
 
-export interface IAuthProviderProps {
-  children: React.ReactNode;
-}
+// export class AuthProvider extends React.Component<
+//   IAuthProviderProps,
+//   IAuthContext
+// > {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       ...defaultState,
+//       login: this.login,
+//       logout: () => this.logout
+//     };
+//   }
 
-// export interface IAuthProviderState extends IAuthContext {}
+//   public login = (user: Auth) => {
+//     console.log('LOGIN WAS CALLED');
+//   };
 
-export class AuthProvider extends React.Component<
-  IAuthProviderProps,
-  IAuthContext
-> {
-  constructor(props) {
-    super(props);
-    this.state = { ...defaultState };
-  }
+//   public logout() {
+//     console.log('LOGOUT WAS CALLED');
+//   }
 
-  public render() {
-    return <Provider value={this.state}>{this.props.children}</Provider>;
-  }
-}
+//   public render() {
+//     return <Provider value={this.state}>{this.props.children}</Provider>;
+//   }
+// }
