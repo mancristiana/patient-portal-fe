@@ -1,4 +1,4 @@
-import { Button, Card, Col, Icon, Input, Row } from 'antd';
+import { Button, Card, Col, Input, Row } from 'antd';
 import * as React from 'react';
 import { Profile } from './../../components';
 import './Home.less';
@@ -21,7 +21,6 @@ class Home extends React.PureComponent {
 
     return (
       <div className="Home">
-        <Icon type="calendar" />
         <Row>
           <Col {...responsiveSearch}>
             <h1 className="Search-header">
@@ -35,7 +34,7 @@ class Home extends React.PureComponent {
             />
 
             <div className="Search-results">
-              <Row gutter={48}>
+              <Row gutter={48} style={{ margin: 0 }}>
                 {[1, 2, 3, 4, 5, 6, 7, 8].map(item => (
                   <Col key={item} {...responsiveCard}>
                     <Card
