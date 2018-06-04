@@ -1,5 +1,11 @@
+import { message } from 'antd';
 import * as React from 'react';
-import { Auth } from './../../shared';
+import { Auth, Response, Token } from './../../shared';
+import { AuthService } from './../auth';
+
+interface IAuthProviderProps {
+  children: React.ReactNode;
+}
 
 interface IAuthContext {
   isLoggedIn: boolean;
@@ -10,20 +16,15 @@ interface IAuthContext {
 const defaultState = {
   isLoggedIn: false,
   login: () => {
-    console.log('Oh');
+    // empty
   },
   logout: () => {
-    console.log('Oh');
+    // empty
   }
 };
 
-const { Provider, Consumer: AuthConsumer } = React.createContext<IAuthContext>(
-  defaultState
-);
-
-interface IAuthProviderProps {
-  children: React.ReactNode;
-}
+const Context = React.createContext<IAuthContext>(defaultState);
+const AuthConsumer = Context.Consumer;
 
 class AuthProvider extends React.Component<IAuthProviderProps, IAuthContext> {
   constructor(props) {
@@ -35,22 +36,39 @@ class AuthProvider extends React.Component<IAuthProviderProps, IAuthContext> {
     };
   }
 
+  public componentDidMount() {
+    const isLoggedIn = AuthService.isLoggedIn();
+    this.setState({ isLoggedIn });
+  }
+
   public login = (user: Auth) => {
-    console.log('LOGIN WAS CALLED');
-    this.setState({
-      isLoggedIn: true
+    const hide = message.loading('Verifying credentials', 0);
+    AuthService.login(user).then((response: Response<Token>) => {
+      setTimeout(hide, 0);
+      if (response.success) {
+        message.success('Successful login');
+        this.setState({
+          isLoggedIn: true
+        });
+      } else {
+        message.error('Incorrect credentials');
+      }
     });
   };
 
   public logout = () => {
-    console.log('LOGOUT WAS CALLED');
+    AuthService.logout();
     this.setState({
       isLoggedIn: false
     });
   };
 
   public render() {
-    return <Provider value={this.state}>{this.props.children}</Provider>;
+    return (
+      <Context.Provider value={this.state}>
+        {this.props.children}
+      </Context.Provider>
+    );
   }
 }
 
