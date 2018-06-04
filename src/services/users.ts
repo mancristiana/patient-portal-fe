@@ -1,4 +1,5 @@
 import request from 'axios';
+import { Register, Response } from './../shared';
 
 const API = 'https://patient-portal-be.herokuapp.com/api/users';
 export class UsersApi {
@@ -8,5 +9,14 @@ export class UsersApi {
 
   public static getAll(callback) {
     return request.get(API + '/patients');
+  }
+
+  public static register(data: Register): Promise<Response<any>> {
+    return request
+      .post(API, data)
+      .then(response => {
+        return response.data;
+      })
+      .catch(err => err.response.data);
   }
 }
