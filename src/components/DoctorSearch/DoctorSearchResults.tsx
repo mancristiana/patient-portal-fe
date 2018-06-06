@@ -6,9 +6,11 @@ import DoctorSearchItem from './DoctorSearchItem';
 
 interface IDoctorSearchResultsProps {
   doctors: Doctor[];
+  onSelect: (doctor: Doctor) => void;
 }
 const DoctorSearchResults: React.SFC<IDoctorSearchResultsProps> = ({
-  doctors
+  doctors,
+  onSelect
 }) => {
   const responsiveCard = {
     md: 12,
@@ -20,7 +22,7 @@ const DoctorSearchResults: React.SFC<IDoctorSearchResultsProps> = ({
       <Row gutter={48} style={{ margin: 0 }}>
         {doctors.map((doctor, key) => (
           <Col key={key} {...responsiveCard}>
-            <DoctorSearchItem doctor={doctor} />
+            <DoctorSearchItem doctor={doctor} onSelect={onSelect} />
           </Col>
         ))}
       </Row>

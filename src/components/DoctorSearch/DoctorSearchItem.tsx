@@ -5,8 +5,15 @@ import Profile from './../Profile/Profile';
 
 interface IDoctorSearchItemProps {
   doctor: Doctor;
+  onSelect: (doctor: Doctor) => void;
 }
-const DoctorSearchItem: React.SFC<IDoctorSearchItemProps> = ({ doctor }) => {
+const DoctorSearchItem: React.SFC<IDoctorSearchItemProps> = ({
+  doctor,
+  onSelect
+}) => {
+  const handleClick = event => {
+    onSelect(doctor);
+  };
   const description = doctor.speciality.name + ' @ ' + doctor.clinic;
   return (
     <Card
@@ -16,7 +23,8 @@ const DoctorSearchItem: React.SFC<IDoctorSearchItemProps> = ({ doctor }) => {
           style={{ margin: 8 }}
           shape="circle"
           size="large"
-          icon={'calendar'}
+          icon="calendar"
+          onClick={handleClick}
         />
       }
       bordered={false}

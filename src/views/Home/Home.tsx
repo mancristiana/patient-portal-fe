@@ -44,7 +44,10 @@ class Home extends React.Component<object, IHomeState> {
               onSearch={this.onSearchChange}
             />
 
-            <DoctorSearchResults doctors={this.state.doctors} />
+            <DoctorSearchResults
+              doctors={this.state.doctors}
+              onSelect={this.onDoctorSelect}
+            />
           </Col>
         </Row>
       </div>
@@ -68,6 +71,10 @@ class Home extends React.Component<object, IHomeState> {
         });
       }
     });
+  };
+
+  private onDoctorSelect = (doctor: Doctor) => {
+    console.log('DOCTOR', doctor);
   };
 }
 
