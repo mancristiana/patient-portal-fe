@@ -1,6 +1,6 @@
 import { Col, Input, message, Row } from 'antd';
 import * as React from 'react';
-import { DoctorSearchResults } from './../../components';
+import { DoctorSearchNotFound, DoctorSearchResults } from './../../components';
 import { Doctor, Response } from './../../models';
 import { DoctorsApi } from './../../services';
 import './Home.less';
@@ -9,7 +9,8 @@ const { Search } = Input;
 
 interface IHomeState {
   doctors: Doctor[];
-  error: string;
+  error: boolean;
+  query: string;
 }
 
 class Home extends React.Component<object, IHomeState> {
@@ -17,7 +18,8 @@ class Home extends React.Component<object, IHomeState> {
     super(props);
     this.state = {
       doctors: [],
-      error: ''
+      error: false,
+      query: ''
     };
   }
 
@@ -39,10 +41,15 @@ class Home extends React.Component<object, IHomeState> {
             </h1>
 
             <Search
-              placeholder="Try dentist..."
+              className="Search-bar"
+              placeholder="Search doctor name, speciality, clinic, address..."
               size="large"
               onSearch={this.onSearchChange}
             />
+
+            {this.state.error && (
+              <DoctorSearchNotFound query={this.state.query} />
+            )}
 
             <DoctorSearchResults
               doctors={this.state.doctors}
@@ -61,13 +68,14 @@ class Home extends React.Component<object, IHomeState> {
       if (response.success) {
         this.setState({
           doctors: response.data || [],
-          error: ''
+          error: false,
+          query
         });
       } else {
         this.setState({
           doctors: [],
-          error:
-            'Your search did not return any results! Try changing the query!'
+          error: true,
+          query
         });
       }
     });

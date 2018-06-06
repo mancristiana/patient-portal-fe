@@ -1,5 +1,8 @@
 export { default as DoctorSearchItem } from './DoctorSearch/DoctorSearchItem';
 export {
+  default as DoctorSearchNotFound
+} from './DoctorSearch/DoctorSearchNotFound';
+export {
   default as DoctorSearchResults
 } from './DoctorSearch/DoctorSearchResults';
 
