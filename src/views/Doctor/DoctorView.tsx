@@ -1,11 +1,14 @@
-import { Col, Row } from 'antd';
+import { Button, Col, Row } from 'antd';
 import * as React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 // import {
 //   DoctorSearchItem,
 //   DoctorNotFound
 // } from './../../components';
-import { DoctorSearchItem as DoctorCard } from './../../components';
+import {
+  DoctorSearchItem as DoctorCard,
+  DoctorSearchNotFound as NotFound
+} from './../../components';
 import { Doctor, Response } from './../../models';
 import { DoctorsApi } from './../../services';
 import './Doctor.less';
@@ -47,7 +50,22 @@ class DoctorView extends React.Component<
       <div className="Doctor">
         <Row>
           <Col {...responsiveContainer}>
-            {this.state.doctor && (
+            {this.state.error ? (
+              <NotFound
+                title="Doctor not found"
+                content={
+                  <React.Fragment>
+                    <p>
+                      There was a problem with fetching your request. Please try
+                      again shortly.
+                    </p>
+                    <Button type="primary" onClick={this.goToSearch}>
+                      Go Back
+                    </Button>
+                  </React.Fragment>
+                }
+              />
+            ) : (
               <DoctorCard
                 doctor={this.state.doctor}
                 loading={this.state.loading}
@@ -74,6 +92,11 @@ class DoctorView extends React.Component<
         });
       }
     });
+  };
+
+  private goToSearch = event => {
+    const { history } = this.props;
+    history.goBack();
   };
 }
 
