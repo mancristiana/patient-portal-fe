@@ -1,5 +1,8 @@
 export { default as DoctorSearchItem } from './DoctorSearch/DoctorSearchItem';
 export {
+  default as DoctorSearchFilterList
+} from './DoctorSearch/DoctorSearchFilterList';
+export {
   default as DoctorSearchNotFound
 } from './DoctorSearch/DoctorSearchNotFound';
 export {

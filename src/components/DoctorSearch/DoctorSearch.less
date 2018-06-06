@@ -1,4 +1,6 @@
-.Search-results {
+@import './../../variables.less';
+
+.Doctor-Search-results {
   overflow: auto;
   .Search-item {
     margin-bottom: 42px;
@@ -19,4 +21,34 @@
 .Search-not-found {
   background-color: white;
   padding: 24px;
+}
+
+.Search-filter-list {
+  width: 250px;
+  float: left;
+  // display: inline-block;
+  ul {
+    padding-left: 0;
+  }
+  li {
+    color: @primary-color;
+    list-style-type: none;
+    cursor: pointer;
+    .Search-filter-icon {
+      display: none;
+      float: right;
+      margin-right: 24px;
+      // margin-left: 24px;
+    }
+    &:hover {
+      color: darken(@primary-color, 10%);
+      text-decoration: underline;
+      .Search-filter-icon {
+        display: initial;
+      }
+    }
+
+    // border-bottom: 1px solid #414141;
+    // padding: 8px;
+  }
 }

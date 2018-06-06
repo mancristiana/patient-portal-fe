@@ -13,13 +13,13 @@ const DoctorSearchResults: React.SFC<IDoctorSearchResultsProps> = ({
   onSelect
 }) => {
   const responsiveCard = {
-    md: 12,
+    // md: 12,
     sm: 24
   };
 
   return (
-    <div className="Search-results">
-      <Row gutter={48} style={{ margin: 0 }}>
+    <div className="Doctor-Search-results">
+      <Row>
         {doctors.map((doctor, key) => (
           <Col key={key} {...responsiveCard}>
             <DoctorSearchItem doctor={doctor} onSelect={onSelect} />

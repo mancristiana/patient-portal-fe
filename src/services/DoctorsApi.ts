@@ -13,4 +13,83 @@ export class DoctorsApi {
       })
       .catch(err => err.response.data);
   }
+
+  public static getCityFilters(): string[] {
+    return [
+      'Oslo',
+      'Bergen',
+      'Trondheim',
+      'Tromsø',
+      'Stavanger',
+      'Ålesund',
+      'Kristianssand',
+      'Drammen',
+      'Frederikstad',
+      'Lillehammer',
+      'Bodø'
+    ];
+  }
+
+  public static getSpecialityFilters(): string[] {
+    return [
+      'Acupuncturists',
+      'Allergists',
+      'Audiologists',
+      'Cardiologists',
+      'Chiropractors',
+      'Dentists',
+      'Dermatologists',
+      'Dietitians',
+      'Ear, Nose & Throat Doctors',
+      'Emergency Medicine Physicians',
+      'Endocrinologists',
+      'Endodontists',
+      'Eye Doctors',
+      'Family Physicians',
+      'Gastroenterologists',
+      'Hand Surgeons',
+      'Hearing Specialists',
+      'Hematologists',
+      'Infectious Disease Specialists',
+      'Infertility Specialists',
+      'Internists',
+      'Naturopathic Doctors',
+      'Nephrologists',
+      'Neurologists',
+      'Neurosurgeons',
+      'Nurse Practitioners',
+      'Nutritionists',
+      'OB-GYNs',
+      'Oncologists',
+      'Ophthalmologists',
+      'Optometrists',
+      'Oral Surgeons',
+      'Orthodontists',
+      'Orthopedic Surgeons',
+      'Pain Management Specialists',
+      'Pediatric Dentists',
+      'Pediatric Urgent Care Specialists',
+      'Pediatricians',
+      'Periodontists',
+      'Physiatrists',
+      'Physical Therapists',
+      'Plastic Surgeons',
+      'Podiatrists',
+      'Doctors',
+      'Prosthodontists',
+      'Psychiatrists',
+      'Psychologists',
+      'Psychotherapists',
+      'Pulmonologists',
+      'Radiologists',
+      'Rheumatologists',
+      'Sleep Medicine Specialists',
+      'Sports Medicine Specialists',
+      'Surgeons',
+      'Therapists / Counselors',
+      'Travel Medicine Specialists',
+      'Urgent Care Specialists',
+      'Urologists'
+    ];
+  }
 }

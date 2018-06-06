@@ -10,16 +10,14 @@ const DoctorSearchNotFound: React.SFC<IDoctorSearchNotFoundProps> = ({
   return (
     <div className="Search-not-found">
       <h2>No results found for "{query}"</h2>
-      <p>
-        Some things you can do:
-        <ul>
-          <li>Check for spelling mistakes</li>
-          <li>
-            Reduce the number of keywords used or try a broader search phrase
-          </li>
-          <li>Try selecting a city or one of the specialities below</li>
-        </ul>
-      </p>
+      <h4>Some things you can do:</h4>
+      <ul>
+        <li>Check for spelling mistakes</li>
+        <li>
+          Reduce the number of keywords used or try a broader search phrase
+        </li>
+        <li>Try selecting a city or one of the specialities below</li>
+      </ul>
     </div>
   );
 };
