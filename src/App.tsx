@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.less';
 import { GuestRoute, Navigation } from './components';
 import { AuthProvider } from './services';
-import { Home, Login, Register } from './views';
+import { Login, Register, Search } from './views';
 
 const { Header, Content, Footer } = Layout;
 
@@ -20,7 +20,7 @@ class App extends React.Component {
             </Header>
 
             <Content className="App-content">
-              <Route exact={true} path="/" component={Home} />
+              <Route exact={true} path="/" component={Search} />
               <GuestRoute path="/login" component={Login} />
               <GuestRoute path="/register" component={Register} />
             </Content>

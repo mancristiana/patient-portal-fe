@@ -3,7 +3,7 @@ import * as React from 'react';
 import { DoctorSearchNotFound, DoctorSearchResults } from './../../components';
 import { Doctor, Response } from './../../models';
 import { DoctorsApi } from './../../services';
-import './Home.less';
+import './Search.less';
 
 const { Search } = Input;
 
@@ -33,7 +33,7 @@ class Home extends React.Component<object, IHomeState> {
     };
 
     return (
-      <div className="Home">
+      <div className="Search">
         <Row>
           <Col {...responsiveSearch}>
             <h1 className="Search-header">

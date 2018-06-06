@@ -16,7 +16,7 @@ class Navigation extends React.Component {
             style={{ backgroundColor: 'transparent' }}>
             <Menu.Item key="1">
               <NavLink exact={true} to="/">
-                Home
+                Search
               </NavLink>
             </Menu.Item>
             {!isLoggedIn && (
