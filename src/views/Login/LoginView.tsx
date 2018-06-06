@@ -4,7 +4,7 @@ import { AuthConsumer } from './../../services';
 import './Login.less';
 import LoginForm from './LoginForm';
 
-class Login extends React.Component {
+class LoginView extends React.Component {
   public render() {
     return (
       <AuthConsumer>
@@ -20,4 +20,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default LoginView;

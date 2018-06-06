@@ -11,14 +11,14 @@ import './Search.less';
 
 const { Search: SearchBar } = Input;
 
-interface ISearchState {
+interface ISearchViewState {
   doctors: Doctor[];
   error: boolean;
   isPristine: boolean;
   query: string;
 }
 
-class Search extends React.Component<object, ISearchState> {
+class SearchView extends React.Component<object, ISearchViewState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -114,4 +114,4 @@ class Search extends React.Component<object, ISearchState> {
   };
 }
 
-export default Search;
+export default SearchView;
