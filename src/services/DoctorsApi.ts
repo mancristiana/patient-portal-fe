@@ -1,5 +1,5 @@
 import request from 'axios';
-import { Doctor, Response } from './../shared';
+import { Doctor, Response } from './../models';
 
 const apiUrl = 'https://patient-portal-be.herokuapp.com/api/doctors';
 export class DoctorsApi {

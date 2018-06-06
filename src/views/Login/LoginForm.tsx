@@ -5,7 +5,7 @@ import {
   ValidationRule
 } from 'antd/lib/form/Form';
 import * as React from 'react';
-import { Auth } from './../../shared';
+import { Auth } from './../../models';
 
 const FormItem = Form.Item;
 

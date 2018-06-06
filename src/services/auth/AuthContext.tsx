@@ -1,7 +1,7 @@
 import { message } from 'antd';
 import * as React from 'react';
-import { Auth, Response, Token } from './../../shared';
-import { AuthService } from './../auth';
+import { Auth, Response, Token } from './../../models';
+import { AuthService } from './AuthService';
 
 interface IAuthProviderProps {
   children: React.ReactNode;

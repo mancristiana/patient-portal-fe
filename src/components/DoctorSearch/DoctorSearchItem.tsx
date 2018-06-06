@@ -1,7 +1,7 @@
 import { Button, Card } from 'antd';
 import * as React from 'react';
-import { Doctor } from './../../shared';
-import Profile from './../Profile';
+import { Doctor } from './../../models';
+import Profile from './../Profile/Profile';
 
 interface IDoctorSearchItemProps {
   doctor: Doctor;

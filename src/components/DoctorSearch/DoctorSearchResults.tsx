@@ -1,6 +1,6 @@
 import { Col, Row } from 'antd';
 import * as React from 'react';
-import { Doctor } from './../../shared';
+import { Doctor } from './../../models';
 import './DoctorSearch.less';
 import DoctorSearchItem from './DoctorSearchItem';
 

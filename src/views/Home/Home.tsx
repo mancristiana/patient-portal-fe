@@ -1,8 +1,8 @@
 import { Col, Input, message, Row } from 'antd';
 import * as React from 'react';
 import { DoctorSearchResults } from './../../components';
+import { Doctor, Response } from './../../models';
 import { DoctorsApi } from './../../services';
-import { Doctor, Response } from './../../shared';
 import './Home.less';
 
 const { Search } = Input;

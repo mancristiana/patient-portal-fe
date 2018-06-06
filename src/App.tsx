@@ -3,7 +3,7 @@ import * as React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.less';
 import { GuestRoute, Navigation } from './components';
-import { AuthProvider } from './services/auth/index';
+import { AuthProvider } from './services';
 import { Home, Login, Register } from './views';
 
 const { Header, Content, Footer } = Layout;

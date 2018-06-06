@@ -1,7 +1,7 @@
 import { Menu } from 'antd';
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
-import { AuthConsumer } from './../services/auth/index';
+import { AuthConsumer } from './../../services';
 import './Navigation.less';
 
 class Navigation extends React.Component {

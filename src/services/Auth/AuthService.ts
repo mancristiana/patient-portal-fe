@@ -1,6 +1,6 @@
 import request from 'axios';
-import { Auth, Response, Token } from './../shared';
-import { CookieService } from './cookie';
+import { Auth, Response, Token } from './../../models';
+import { CookieService } from './CookieService';
 
 const API = 'https://patient-portal-be.herokuapp.com/auth';
 export class AuthService {
