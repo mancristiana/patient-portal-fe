@@ -9,16 +9,16 @@ import { Doctor, Response } from './../../models';
 import { DoctorsApi } from './../../services';
 import './Search.less';
 
-const { Search } = Input;
+const { Search: SearchBar } = Input;
 
-interface IHomeState {
+interface ISearchState {
   doctors: Doctor[];
   error: boolean;
   isPristine: boolean;
   query: string;
 }
 
-class Home extends React.Component<object, IHomeState> {
+class Search extends React.Component<object, ISearchState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,7 +46,7 @@ class Home extends React.Component<object, IHomeState> {
               <span>Need medical care?</span> <span>Find a doctor.</span>
             </h1>
 
-            <Search
+            <SearchBar
               className="Search-bar"
               placeholder="Search doctor name, speciality, clinic, address..."
               size="large"
@@ -114,4 +114,4 @@ class Home extends React.Component<object, IHomeState> {
   };
 }
 
-export default Home;
+export default Search;
