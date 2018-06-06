@@ -13,6 +13,15 @@ export class DoctorsApi {
       })
       .catch(err => err.response.data);
   }
+  public static getDoctorById(id: string): Promise<Response<Doctor>> {
+    const encodedId = encodeURIComponent(id);
+    return request
+      .get(`${apiUrl}/${encodedId}`)
+      .then(response => {
+        return response.data;
+      })
+      .catch(err => err.response.data);
+  }
 
   public static getCityFilters(): string[] {
     return [

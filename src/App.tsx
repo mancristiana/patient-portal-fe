@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.less';
 import { GuestRoute, Navigation } from './components';
 import { AuthProvider } from './services';
-import { Login, Register, Search } from './views';
+import { DoctorView, LoginView, RegisterView, SearchView } from './views';
 
 const { Header, Content, Footer } = Layout;
 
@@ -20,9 +20,10 @@ class App extends React.Component {
             </Header>
 
             <Content className="App-content">
-              <Route exact={true} path="/" component={Search} />
-              <GuestRoute path="/login" component={Login} />
-              <GuestRoute path="/register" component={Register} />
+              <Route exact={true} path="/" component={SearchView} />
+              <Route path="/doctors/:doctorId" component={DoctorView} />
+              <GuestRoute path="/login" component={LoginView} />
+              <GuestRoute path="/register" component={RegisterView} />
             </Content>
 
             <Footer className="App-footer">

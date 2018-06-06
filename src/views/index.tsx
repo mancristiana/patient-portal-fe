@@ -1,3 +1,4 @@
-export { default as Login } from './Login/LoginView';
-export { default as Search } from './Search/SearchView';
-export { default as Register } from './Register/RegisterView';
+export { default as DoctorView } from './Doctor/DoctorView';
+export { default as LoginView } from './Login/LoginView';
+export { default as SearchView } from './Search/SearchView';
+export { default as RegisterView } from './Register/RegisterView';

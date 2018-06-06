@@ -5,12 +5,13 @@ import './Profile.less';
 interface IProfileProps {
   name: string;
   description: string;
+  color?: string;
 }
 const Profile: React.SFC<IProfileProps> = props => {
   return (
     <div className="Profile">
       <div className="Profile-avatar">
-        <Avatar name={props.name} />
+        <Avatar name={props.name} color={props.color} />
       </div>
 
       <div className="Profile-box">

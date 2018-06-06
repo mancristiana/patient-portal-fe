@@ -1,5 +1,6 @@
 import { Col, Input, message, Row } from 'antd';
 import * as React from 'react';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import {
   DoctorSearchFilterList,
   DoctorSearchNotFound,
@@ -18,7 +19,10 @@ interface ISearchViewState {
   query: string;
 }
 
-class SearchView extends React.Component<object, ISearchViewState> {
+class SearchView extends React.Component<
+  RouteComponentProps<object>,
+  ISearchViewState
+> {
   constructor(props) {
     super(props);
     this.state = {
@@ -111,7 +115,8 @@ class SearchView extends React.Component<object, ISearchViewState> {
 
   private onDoctorSelect = (doctor: Doctor) => {
     console.log('DOCTOR', doctor);
+    this.props.history.push('/doctors/' + doctor.id);
   };
 }
 
-export default SearchView;
+export default withRouter(SearchView);

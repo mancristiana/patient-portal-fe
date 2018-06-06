@@ -6,4 +6,16 @@ export class Doctor {
   public clinic: string;
   public address: string;
   public phone: string;
+
+  constructor() {
+    this.id = '';
+    this.name = '';
+    this.speciality = {
+      id: '',
+      name: ''
+    };
+    this.clinic = '';
+    this.address = '';
+    this.phone = '';
+  }
 }

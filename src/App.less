@@ -1,10 +1,12 @@
+@import 'variables.less';
+
 @top-navigation-height: 64px;
 
 .App {
   min-height: 100vh;
 
   .App-background {
-    background: #f0f2f5 url('./assets/bg.svg') no-repeat fixed top;
+    background: @bg url('./assets/bg.svg') no-repeat fixed top;
     background-size: cover;
     position: absolute;
     z-index: 1;
