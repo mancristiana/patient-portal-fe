@@ -1,11 +1,26 @@
-import { Button, Card, Col, Input, Row } from 'antd';
+import { Col, Input, message, Row } from 'antd';
 import * as React from 'react';
-import { Profile } from './../../components';
+import { DoctorSearchResults } from './../../components';
+import { DoctorsApi } from './../../services';
+import { Doctor, Response } from './../../shared';
 import './Home.less';
 
 const { Search } = Input;
 
-class Home extends React.PureComponent {
+interface IHomeState {
+  doctors: Doctor[];
+  error: string;
+}
+
+class Home extends React.Component<object, IHomeState> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      doctors: [],
+      error: ''
+    };
+  }
+
   public render() {
     const responsiveSearch = {
       lg: { offset: 5, span: 14 },
@@ -13,10 +28,6 @@ class Home extends React.PureComponent {
       sm: { offset: 3, span: 18 },
       xl: { offset: 6, span: 12 },
       xs: { offset: 1, span: 22 }
-    };
-    const responsiveCard = {
-      md: 12,
-      sm: 24
     };
 
     return (
@@ -30,44 +41,34 @@ class Home extends React.PureComponent {
             <Search
               placeholder="Try dentist..."
               size="large"
-              onSearch={value => console.log(value)}
+              onSearch={this.onSearchChange}
             />
 
-            <div className="Search-results">
-              <Row gutter={48} style={{ margin: 0 }}>
-                {[1, 2, 3, 4, 5, 6, 7, 8].map(item => (
-                  <Col key={item} {...responsiveCard}>
-                    <Card
-                      className="Search-item"
-                      extra={
-                        <Button
-                          style={{ margin: 8 }}
-                          shape="circle"
-                          size="large"
-                          icon={'calendar'}
-                        />
-                      }
-                      bordered={false}
-                      title={
-                        <Profile
-                          name={'John Doe' + item}
-                          description="Dentist @ clinic name"
-                        />
-                      }>
-                      <p className="Doctor-contact">
-                        <span>Address 235, 2700 Kobenhavn</span>
-                        <span>49 89 51 78</span>
-                      </p>
-                    </Card>
-                  </Col>
-                ))}
-              </Row>
-            </div>
+            <DoctorSearchResults doctors={this.state.doctors} />
           </Col>
         </Row>
       </div>
     );
   }
+
+  private onSearchChange = query => {
+    const hide = message.loading('Finding doctors', 0);
+    DoctorsApi.search(query).then((response: Response<Doctor[]>) => {
+      setTimeout(hide, 0);
+      if (response.success) {
+        this.setState({
+          doctors: response.data || [],
+          error: ''
+        });
+      } else {
+        this.setState({
+          doctors: [],
+          error:
+            'Your search did not return any results! Try changing the query!'
+        });
+      }
+    });
+  };
 }
 
 export default Home;
