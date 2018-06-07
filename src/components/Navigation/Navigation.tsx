@@ -30,7 +30,17 @@ class Navigation extends React.Component {
               </Menu.Item>
             )}
             {isLoggedIn && (
-              <Menu.Item key="4" onClick={logout}>
+              <Menu.Item key="4">
+                <NavLink to="/Appointments">Appointments</NavLink>
+              </Menu.Item>
+            )}
+            {isLoggedIn && (
+              <Menu.Item key="5">
+                <NavLink to="/Patient">Patient</NavLink>
+              </Menu.Item>
+            )}
+            {isLoggedIn && (
+              <Menu.Item key="6" onClick={logout}>
                 Logout
               </Menu.Item>
             )}

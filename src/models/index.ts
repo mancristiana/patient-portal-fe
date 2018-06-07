@@ -1,3 +1,5 @@
+export * from './Appointment';
+export * from './AppointmentDataSource';
 export * from './Auth';
 export * from './Doctor';
 export * from './Response';

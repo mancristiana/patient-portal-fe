@@ -20,6 +20,11 @@ export class AuthService {
     return !!token;
   }
 
+  public static getAuthHeader() {
+    const token = CookieService.getToken();
+    return { Authorization: 'Bearer ' + token };
+  }
+
   public static logout() {
     CookieService.removeToken();
   }

@@ -2,9 +2,16 @@ import { Icon, Layout } from 'antd';
 import * as React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.less';
-import { GuestRoute, Navigation } from './components';
+import { GuestRoute, Navigation, PrivateRoute } from './components';
 import { AuthProvider } from './services';
-import { DoctorView, LoginView, RegisterView, SearchView } from './views';
+import {
+  AppointmentView,
+  DoctorView,
+  LoginView,
+  // PatientView,
+  RegisterView,
+  SearchView
+} from './views';
 
 const { Header, Content, Footer } = Layout;
 
@@ -24,6 +31,8 @@ class App extends React.Component {
               <Route path="/doctors/:doctorId" component={DoctorView} />
               <GuestRoute path="/login" component={LoginView} />
               <GuestRoute path="/register" component={RegisterView} />
+              <PrivateRoute path="/appointments" component={AppointmentView} />
+              <PrivateRoute path="/patient" component={AppointmentView} />
             </Content>
 
             <Footer className="App-footer">

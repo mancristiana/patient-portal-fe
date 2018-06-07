@@ -1,10 +1,6 @@
 import { Button, Col, Row } from 'antd';
 import * as React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-// import {
-//   DoctorSearchItem,
-//   DoctorNotFound
-// } from './../../components';
 import {
   DoctorSearchItem as DoctorCard,
   DoctorSearchNotFound as NotFound,
