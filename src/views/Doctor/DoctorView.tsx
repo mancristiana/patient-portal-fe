@@ -7,15 +7,17 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 // } from './../../components';
 import {
   DoctorSearchItem as DoctorCard,
-  DoctorSearchNotFound as NotFound
+  DoctorSearchNotFound as NotFound,
+  Timeslots
 } from './../../components';
-import { Doctor, Response } from './../../models';
-import { DoctorsApi } from './../../services';
+import { DayTimeslot, Doctor, Response, Timeslot } from './../../models';
+import { DoctorsApi, TimeslotService } from './../../services';
 import './Doctor.less';
 interface IDoctorViewState {
   doctor: Doctor;
   error: boolean;
   loading: boolean;
+  timeslots: DayTimeslot[];
 }
 
 class DoctorView extends React.Component<
@@ -27,7 +29,8 @@ class DoctorView extends React.Component<
     this.state = {
       doctor: new Doctor(),
       error: false,
-      loading: true
+      loading: true,
+      timeslots: []
     };
   }
 
@@ -35,6 +38,7 @@ class DoctorView extends React.Component<
     const { match } = this.props;
     const id = match.params.doctorId || '';
     this.getDoctor(id);
+    this.getTimeslots(id);
   }
 
   public render() {
@@ -50,22 +54,8 @@ class DoctorView extends React.Component<
       <div className="Doctor">
         <Row>
           <Col {...responsiveContainer}>
-            {this.state.error ? (
-              <NotFound
-                title="Doctor not found"
-                content={
-                  <React.Fragment>
-                    <p>
-                      There was a problem with fetching your request. Please try
-                      again shortly.
-                    </p>
-                    <Button type="primary" onClick={this.goToSearch}>
-                      Go Back
-                    </Button>
-                  </React.Fragment>
-                }
-              />
-            ) : (
+            {this.renderNotFound()}
+            {!this.state.error && (
               <DoctorCard
                 doctor={this.state.doctor}
                 loading={this.state.loading}
@@ -73,9 +63,31 @@ class DoctorView extends React.Component<
             )}
           </Col>
         </Row>
+        <Row>
+          {!this.state.error && <Timeslots days={this.state.timeslots} />}
+        </Row>
       </div>
     );
   }
+
+  private renderNotFound = () => {
+    return this.state.error ? (
+      <NotFound
+        title="Doctor not found"
+        content={
+          <React.Fragment>
+            <p>
+              There was a problem with fetching your request. Please try again
+              shortly.
+            </p>
+            <Button type="primary" onClick={this.goToSearch}>
+              Go Back
+            </Button>
+          </React.Fragment>
+        }
+      />
+    ) : null;
+  };
 
   private getDoctor = id => {
     DoctorsApi.getDoctorById(id).then((response: Response<Doctor>) => {
@@ -89,6 +101,19 @@ class DoctorView extends React.Component<
         this.setState({
           error: true,
           loading: false
+        });
+      }
+    });
+  };
+
+  private getTimeslots = id => {
+    DoctorsApi.getDoctorTimeslots(id).then((response: Response<Timeslot[]>) => {
+      if (response.success) {
+        const timeslots = TimeslotService.mapTimeslotsToDays(
+          response.data || []
+        );
+        this.setState({
+          timeslots
         });
       }
     });

@@ -1,0 +1,76 @@
+@day-width: 150;
+
+.Timeslots {
+  margin-top: 36px;
+  h1 {
+    text-align: center;
+  }
+
+  .Timeslots-navigation-container {
+    position: absolute;
+    left: 0;
+    width: 100%;
+  }
+
+  .Timeslots-navigation {
+    margin: auto;
+    width: 1px * @day-width + 80px;
+
+    @media (min-width: 542px) {
+      width: 2px * @day-width + 80px;
+    }
+
+    @media (min-width: 768px) {
+      width: 3px * @day-width + 80px;
+    }
+    @media (min-width: 992px) {
+      width: 4px * @day-width + 80px;
+    }
+
+    .left,
+    .right {
+      top: 50px;
+    }
+
+    .left {
+      float: left;
+    }
+    .right {
+      float: right;
+    }
+  }
+
+  .Timeslots-viewer {
+    overflow: hidden;
+    margin: auto;
+    width: 1px * @day-width;
+
+    @media (min-width: 542px) {
+      width: 2px * @day-width;
+    }
+
+    @media (min-width: 768px) {
+      width: 3px * @day-width;
+    }
+    @media (min-width: 992px) {
+      width: 4px * @day-width;
+    }
+  }
+
+  .Timeslots-container {
+    position: relative;
+  }
+}
+
+.DayTimeslots {
+  width: @day-width * 1px;
+  // height: 600px;
+  float: left;
+
+  text-align: center;
+  padding: 24px;
+
+  &-time {
+    margin: 16px 0;
+  }
+}

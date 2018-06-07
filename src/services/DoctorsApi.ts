@@ -1,5 +1,5 @@
 import request from 'axios';
-import { Doctor, Response } from './../models';
+import { Doctor, Response, Timeslot } from './../models';
 
 const apiUrl = 'https://patient-portal-be.herokuapp.com/api/doctors';
 export class DoctorsApi {
@@ -17,6 +17,18 @@ export class DoctorsApi {
     const encodedId = encodeURIComponent(id);
     return request
       .get(`${apiUrl}/${encodedId}`)
+      .then(response => {
+        return response.data;
+      })
+      .catch(err => err.response.data);
+  }
+
+  public static getDoctorTimeslots(
+    doctorId: string
+  ): Promise<Response<Timeslot[]>> {
+    const encodedId = encodeURIComponent(doctorId);
+    return request
+      .get(`${apiUrl}/${encodedId}/timeslots`)
       .then(response => {
         return response.data;
       })
