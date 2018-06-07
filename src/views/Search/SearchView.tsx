@@ -114,7 +114,6 @@ class SearchView extends React.Component<
   };
 
   private onDoctorSelect = (doctor: Doctor) => {
-    console.log('DOCTOR', doctor);
     this.props.history.push('/doctors/' + doctor.id);
   };
 }
